@@ -1,0 +1,308 @@
+[
+  {
+    "id": "assign-cookies",
+    "title": "Assign Cookies",
+    "difficulty": "Easy",
+    "category": "Arrays",
+    "statement": "Dadas dos listas g y s, donde g[i] es el tamaño mínimo de galleta que satisface al niño i y s[j] es el tamaño de la galleta j, regresa el máximo número de niños que pueden quedar satisfechos. Cada niño puede recibir como máximo una galleta y cada galleta puede asignarse a lo más a un niño. Determina también la complejidad temporal y espacial de tu solución.",
+    "constraints": [
+      "1 <= len(g), len(s) <= 30000",
+      "1 <= g[i], s[j] <= 2^31 - 1"
+    ],
+    "template": "class Solution:\n    def findContentChildren(self, g: list[int], s: list[int]) -> int:\n        # Tu código aquí\n        pass",
+    "examples": [
+      {
+        "input": "g = [1,2,3], s = [1,1]",
+        "output": "1"
+      },
+      {
+        "input": "g = [1,2], s = [1,2,3]",
+        "output": "2"
+      }
+    ],
+    "tests": [
+      {
+        "input": "g = [1,2,3], s = [1,1]",
+        "expected": "1",
+        "call": "solution.findContentChildren([1,2,3], [1,1])",
+        "hidden": false
+      },
+      {
+        "input": "g = [1,2], s = [1,2,3]",
+        "expected": "2",
+        "call": "solution.findContentChildren([1,2], [1,2,3])",
+        "hidden": false
+      },
+      {
+        "input": "g = [10,9,8,7], s = [5,6,7,8]",
+        "expected": "2",
+        "call": "solution.findContentChildren([10,9,8,7], [5,6,7,8])",
+        "hidden": true
+      },
+      {
+        "input": "g = [1,1,1], s = [1,1]",
+        "expected": "2",
+        "call": "solution.findContentChildren([1,1,1], [1,1])",
+        "hidden": true
+      },
+      {
+        "input": "g = [5,3,2], s = [1,2,3,4,5]",
+        "expected": "3",
+        "call": "solution.findContentChildren([5,3,2], [1,2,3,4,5])",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "pow-x-n",
+    "title": "Pow(x, n)",
+    "difficulty": "Medium",
+    "category": "Math",
+    "statement": "Dados un número real x y un entero n, calcula x elevado a n. Considera correctamente exponentes positivos, cero y negativos. Determina también la complejidad temporal y espacial de tu solución.",
+    "constraints": [
+      "-100.0 < x < 100.0",
+      "-2^31 <= n <= 2^31 - 1",
+      "n es un entero"
+    ],
+    "template": "class Solution:\n    def myPow(self, x: float, n: int) -> float:\n        # Tu código aquí\n        pass",
+    "examples": [
+      {
+        "input": "x = 2.0, n = 10",
+        "output": "1024.0"
+      },
+      {
+        "input": "x = 2.0, n = -2",
+        "output": "0.25"
+      }
+    ],
+    "tests": [
+      {
+        "input": "x = 2.0, n = 10",
+        "expected": "1024.0",
+        "call": "solution.myPow(2.0, 10)",
+        "compare": "float",
+        "hidden": false
+      },
+      {
+        "input": "x = 2.0, n = -2",
+        "expected": "0.25",
+        "call": "solution.myPow(2.0, -2)",
+        "compare": "float",
+        "hidden": false
+      },
+      {
+        "input": "x = 2.1, n = 3",
+        "expected": "9.261000000000001",
+        "call": "solution.myPow(2.1, 3)",
+        "compare": "float",
+        "hidden": true
+      },
+      {
+        "input": "x = 0.5, n = -10",
+        "expected": "1024.0",
+        "call": "solution.myPow(0.5, -10)",
+        "compare": "float",
+        "hidden": true
+      },
+      {
+        "input": "x = 1.000000001, n = 1000000000",
+        "expected": "2.7182820520115603",
+        "call": "solution.myPow(1.000000001, 1000000000)",
+        "compare": "float",
+        "tolerance": 1e-08,
+        "hidden": true
+      },
+      {
+        "input": "x = 1.000000001, n = -1000000000",
+        "expected": "0.36787941091690185",
+        "call": "solution.myPow(1.000000001, -1000000000)",
+        "compare": "float",
+        "tolerance": 1e-08,
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "search-rotated-array",
+    "title": "Search in Rotated Sorted Array",
+    "difficulty": "Medium",
+    "category": "Arrays",
+    "statement": "Dado un arreglo nums de enteros distintos, originalmente ordenado de forma ascendente y posteriormente rotado, y un entero target, regresa el índice de target. Si no existe, regresa -1. Determina también la complejidad temporal y espacial de tu solución.",
+    "constraints": [
+      "1 <= len(nums) <= 5000",
+      "Los valores de nums son distintos",
+      "nums es una rotación de un arreglo ordenado ascendentemente"
+    ],
+    "template": "class Solution:\n    def search(self, nums: list[int], target: int) -> int:\n        # Tu código aquí\n        pass",
+    "examples": [
+      {
+        "input": "nums = [4,5,6,7,0,1,2], target = 0",
+        "output": "4"
+      },
+      {
+        "input": "nums = [4,5,6,7,0,1,2], target = 3",
+        "output": "-1"
+      }
+    ],
+    "tests": [
+      {
+        "input": "nums = [4,5,6,7,0,1,2], target = 0",
+        "expected": "4",
+        "call": "solution.search([4,5,6,7,0,1,2], 0)",
+        "hidden": false
+      },
+      {
+        "input": "nums = [4,5,6,7,0,1,2], target = 3",
+        "expected": "-1",
+        "call": "solution.search([4,5,6,7,0,1,2], 3)",
+        "hidden": false
+      },
+      {
+        "input": "nums = [1], target = 1",
+        "expected": "0",
+        "call": "solution.search([1], 1)",
+        "hidden": true
+      },
+      {
+        "input": "nums = [1], target = 0",
+        "expected": "-1",
+        "call": "solution.search([1], 0)",
+        "hidden": true
+      },
+      {
+        "input": "nums = [5,1,3], target = 3",
+        "expected": "2",
+        "call": "solution.search([5,1,3], 3)",
+        "hidden": true
+      },
+      {
+        "input": "nums = [6,7,8,1,2,3,4,5], target = 6",
+        "expected": "0",
+        "call": "solution.search([6,7,8,1,2,3,4,5], 6)",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "n-knights",
+    "title": "N-Knights",
+    "difficulty": "Medium",
+    "category": "Chess",
+    "statement": "Dado un entero positivo n, coloca exactamente n caballos en un tablero n x n de forma que ningún caballo ataque a otro. Regresa todas las configuraciones válidas como listas de cadenas, usando K para una casilla ocupada y . para una casilla vacía. El orden de las configuraciones no importa. Determina también la complejidad temporal y espacial de tu solución.",
+    "constraints": [
+      "1 <= n <= 4 en los casos del juez",
+      "Cada tablero debe contener exactamente n caballos",
+      "No se permiten configuraciones duplicadas"
+    ],
+    "template": "class Solution:\n    def nKnights(self, n: int) -> list[list[str]]:\n        # Tu código aquí\n        pass",
+    "examples": [
+      {
+        "input": "n = 1",
+        "output": "[[\"K\"]]"
+      },
+      {
+        "input": "n = 3",
+        "output": "Una configuración válida es [\"KKK\", \"...\", \"...\"]"
+      }
+    ],
+    "tests": [
+      {
+        "input": "n = 1",
+        "expected": "1",
+        "publicExpected": "1 configuración válida",
+        "expectedCount": 1,
+        "n": 1,
+        "call": "solution.nKnights(1)",
+        "compare": "nknights",
+        "hidden": false
+      },
+      {
+        "input": "n = 2",
+        "expected": "6",
+        "publicExpected": "6 configuraciones válidas",
+        "expectedCount": 6,
+        "n": 2,
+        "call": "solution.nKnights(2)",
+        "compare": "nknights",
+        "hidden": false
+      },
+      {
+        "input": "n = 3",
+        "expected": "36",
+        "expectedCount": 36,
+        "n": 3,
+        "call": "solution.nKnights(3)",
+        "compare": "nknights",
+        "hidden": true
+      },
+      {
+        "input": "n = 4",
+        "expected": "412",
+        "expectedCount": 412,
+        "n": 4,
+        "call": "solution.nKnights(4)",
+        "compare": "nknights",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "generate-parentheses",
+    "title": "Generate Parentheses",
+    "difficulty": "Medium",
+    "category": "Strings",
+    "statement": "Dado un entero positivo n, genera todas las combinaciones diferentes de n pares de paréntesis correctamente balanceados. El orden de las cadenas en la respuesta no importa. Determina también la complejidad temporal y espacial de tu solución.",
+    "constraints": [
+      "1 <= n <= 5 en los casos del juez",
+      "Cada cadena debe contener exactamente n paréntesis de apertura y n de cierre"
+    ],
+    "template": "class Solution:\n    def generateParenthesis(self, n: int) -> list[str]:\n        # Tu código aquí\n        pass",
+    "examples": [
+      {
+        "input": "n = 3",
+        "output": "[\"((()))\", \"(()())\", \"(())()\", \"()(())\", \"()()()\"]"
+      },
+      {
+        "input": "n = 1",
+        "output": "[\"()\"]"
+      }
+    ],
+    "tests": [
+      {
+        "input": "n = 1",
+        "expected": "[\"()\"]",
+        "call": "solution.generateParenthesis(1)",
+        "compare": "unordered",
+        "hidden": false
+      },
+      {
+        "input": "n = 3",
+        "expected": "[\"((()))\",\"(()())\",\"(())()\",\"()(())\",\"()()()\"]",
+        "call": "solution.generateParenthesis(3)",
+        "compare": "unordered",
+        "hidden": false
+      },
+      {
+        "input": "n = 2",
+        "expected": "[\"(())\",\"()()\"]",
+        "call": "solution.generateParenthesis(2)",
+        "compare": "unordered",
+        "hidden": true
+      },
+      {
+        "input": "n = 4",
+        "expected": "[\"(((())))\",\"((()()))\",\"((())())\",\"((()))()\",\"(()(()))\",\"(()()())\",\"(()())()\",\"(())(())\",\"(())()()\",\"()((()))\",\"()(()())\",\"()(())()\",\"()()(())\",\"()()()()\"]",
+        "call": "solution.generateParenthesis(4)",
+        "compare": "unordered",
+        "hidden": true
+      },
+      {
+        "input": "n = 5",
+        "expected": "[\"((((()))))\",\"(((()())))\",\"(((())()))\",\"(((()))())\",\"(((())))()\",\"((()(())))\",\"((()()()))\",\"((()())())\",\"((()()))()\",\"((())(()))\",\"((())()())\",\"((())())()\",\"((()))(())\",\"((()))()()\",\"(()((())))\",\"(()(()()))\",\"(()(())())\",\"(()(()))()\",\"(()()(()))\",\"(()()()())\",\"(()()())()\",\"(()())(())\",\"(()())()()\",\"(())((()))\",\"(())(()())\",\"(())(())()\",\"(())()(())\",\"(())()()()\",\"()(((())))\",\"()((()()))\",\"()((())())\",\"()((()))()\",\"()(()(()))\",\"()(()()())\",\"()(()())()\",\"()(())(())\",\"()(())()()\",\"()()((()))\",\"()()(()())\",\"()()(())()\",\"()()()(())\",\"()()()()()\"]",
+        "call": "solution.generateParenthesis(5)",
+        "compare": "unordered",
+        "hidden": true
+      }
+    ]
+  }
+]

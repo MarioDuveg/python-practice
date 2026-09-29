@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Python Practice Judge</title>
+  <link rel="stylesheet" href="/styles.css?v=python-v1" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">&lt;/&gt;</div>
+      <div>
+        <strong>Python Practice Judge</strong>
+        <span>Algoritmos y estructuras de datos</span>
+      </div>
+    </div>
+    <div class="top-actions">
+      <span class="compiler-badge">Python</span>
+      <span id="headerVerdict" class="header-verdict neutral">Listo</span>
+      <button id="resetBtn" class="btn btn-ghost">Restablecer</button>
+      <button id="runBtn" class="btn btn-secondary">Ejecutar</button>
+      <button id="submitBtn" class="btn btn-primary">Enviar</button>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-head">
+        <h2>Problemas</h2>
+        <span id="problemCount" class="count"></span>
+      </div>
+      <input id="searchInput" class="search" type="search" placeholder="Buscar problema..." autocomplete="off" />
+      <div id="categoryFilters" class="filters"></div>
+      <nav id="problemList" class="problem-list" aria-label="Lista de problemas"></nav>
+    </aside>
+
+    <section class="workspace">
+      <div class="problem-pane">
+        <div class="problem-title-row">
+          <div>
+            <div class="eyebrow" id="problemCategory"></div>
+            <h1 id="problemTitle">Cargando...</h1>
+          </div>
+          <span id="difficultyBadge" class="difficulty"></span>
+        </div>
+
+        <p id="problemStatement" class="statement"></p>
+
+        <section class="content-section">
+          <h3>Ejemplos</h3>
+          <div id="examples"></div>
+        </section>
+
+        <section class="content-section">
+          <h3>Restricciones</h3>
+          <ul id="constraints" class="constraints"></ul>
+        </section>
+
+        <section class="content-section">
+          <h3>Casos visibles</h3>
+          <div id="visibleTests" class="visible-tests"></div>
+        </section>
+      </div>
+
+      <div class="code-pane">
+        <div class="editor-head">
+          <div>
+            <strong>solution.py</strong>
+            <span>La plataforma ejecuta tu clase Solution contra casos visibles y ocultos.</span>
+          </div>
+          <span id="saveStatus" class="save-status">Guardado local</span>
+        </div>
+        <div id="editor" class="editor"></div>
+
+        <div class="results-pane">
+          <div class="results-head">
+            <div>
+              <strong>Consola</strong>
+              <span id="resultSummary">Aún no has ejecutado pruebas.</span>
+            </div>
+            <div id="verdict" class="verdict neutral">Listo</div>
+          </div>
+          <div id="results" class="results-body empty-state">
+            Presiona <strong>Ejecutar</strong> para correr casos visibles o <strong>Enviar</strong> para evaluar todos los casos.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/monaco/vs/loader.js"></script>
+  <script src="/app.js?v=python-v1"></script>
+</body>
+</html>

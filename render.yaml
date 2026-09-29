@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: python-practice-judge
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: MAX_CONCURRENT_JOBS
+        value: "1"

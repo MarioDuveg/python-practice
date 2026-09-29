@@ -1,0 +1,17 @@
+{
+  "name": "python-practice-judge",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mini juez tipo LeetCode para practicar algoritmos en Python.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "4.21.2",
+    "monaco-editor": "0.52.2"
+  }
+}
