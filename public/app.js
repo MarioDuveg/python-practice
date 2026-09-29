@@ -106,7 +106,11 @@ function initEditor() {
       lineHeight: 21,
       fontLigatures: true,
       minimap: { enabled: false },
-      automaticLayout: true,
+      // Evitamos el ResizeObserver interno de Monaco, que puede generar
+      // 'ResizeObserver loop completed with undelivered notifications'
+      // al actualizar el panel de resultados. El layout se recalcula
+      // de forma controlada con los eventos de resize de la ventana.
+      automaticLayout: false,
       scrollBeyondLastLine: false,
       tabSize: 4,
       insertSpaces: true,
@@ -117,6 +121,22 @@ function initEditor() {
       autoIndent: 'full',
       formatOnType: true
     });
+
+    // Recalcula el tamaño del editor sin usar ResizeObserver.
+    let layoutFrame = null;
+    const scheduleEditorLayout = () => {
+      if (layoutFrame !== null) cancelAnimationFrame(layoutFrame);
+      layoutFrame = requestAnimationFrame(() => {
+        layoutFrame = null;
+        if (editor) editor.layout();
+      });
+    };
+
+    window.addEventListener('resize', scheduleEditorLayout, { passive: true });
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', scheduleEditorLayout, { passive: true });
+    }
+    scheduleEditorLayout();
 
     // Monaco conserva la indentación normal de Python.
     let saveTimer;
