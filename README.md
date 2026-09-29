@@ -1,14 +1,32 @@
-# Python Practice Judge
+# Python Practice Judge — 21 problemas
 
-Mini plataforma tipo LeetCode para practicar cinco problemas de algoritmos en **Python 3**. Incluye editor Monaco, casos visibles y ocultos, ejecución real con Python y verdicts automáticos.
+Mini plataforma tipo LeetCode para practicar **21 problemas de algoritmos en Python 3**. Incluye editor Monaco, casos visibles y ocultos, ejecución real con Python y verdicts automáticos.
 
 ## Problemas incluidos
 
-1. Assign Cookies
-2. Pow(x, n)
-3. Search in Rotated Sorted Array
-4. N-Knights
-5. Generate Parentheses
+| # | Problema | Técnica |
+|---:|---|---|
+| 1 | Assign Cookies | Greedy |
+| 2 | Activity Selection | Greedy |
+| 3 | Coin Change canónico | Greedy |
+| 4 | Min-Max `< 1.5n` | Comparación por parejas |
+| 5 | Pow(x, n) | Divide & Conquer |
+| 6 | Jump Game | Greedy |
+| 7 | eraseOverlapIntervals | Greedy |
+| 8 | Minimum Number of Arrows to Burst Balloons | Greedy |
+| 9 | Gas Station | Greedy |
+| 10 | Find First and Last Position | Binary Search |
+| 11 | Search in Rotated Sorted Array | Binary Search |
+| 12 | Jump Game II | Greedy / BFS implícito |
+| 13 | Subsets II | Backtracking |
+| 14 | Generate Parentheses | Backtracking |
+| 15 | Combination Sum II | Backtracking |
+| 16 | Permutations II | Backtracking |
+| 17 | Beautiful Array | Divide & Conquer |
+| 18 | Kth Largest / Quickselect | Divide & Conquer |
+| 19 | N-Knights | Backtracking + poda |
+| 20 | Candy | Greedy |
+| 21 | Median of Two Sorted Arrays | Binary Search / Divide & Conquer |
 
 Las plantillas usan el formato `class Solution` habitual de LeetCode.
 
@@ -19,9 +37,9 @@ Las plantillas usan el formato `class Solution` habitual de LeetCode.
 - Botón **Enviar** para evaluar todos los casos.
 - Verdicts: `Accepted`, `Wrong Answer`, `Syntax Error`, `Runtime Error`, `Time Limit Exceeded` y `Output Limit Exceeded`.
 - Código guardado localmente por problema mediante `localStorage`.
-- Comparación con tolerancia para `Pow(x, n)`.
-- Comparación sin importar el orden para `Generate Parentheses`.
-- Validación estructural de todas las configuraciones regresadas por `N-Knights`.
+- Comparación con tolerancia para resultados de punto flotante.
+- Comparación sin importar el orden para problemas con múltiples respuestas.
+- Validadores especiales para Activity Selection, Coin Change canónico, Beautiful Array y N-Knights.
 - Dockerfile y `render.yaml` listos para Render.
 
 ## Ejecutar localmente

@@ -91,6 +91,92 @@ function canonicalTopLevel(value) {
   return value.map((item) => JSON.stringify(item)).sort();
 }
 
+function canonicalNestedSet(value) {
+  if (!Array.isArray(value)) return null;
+  return value.map((item) => {
+    if (!Array.isArray(item)) return null;
+    const normalized = [...item].sort((a, b) => {
+      if (typeof a === 'number' && typeof b === 'number') return a - b;
+      return String(a).localeCompare(String(b));
+    });
+    return JSON.stringify(normalized);
+  }).sort();
+}
+
+function validateActivity(actualText, test) {
+  let value;
+  try { value = JSON.parse(actualText); } catch (_) { return { ok: false, displayActual: actualText }; }
+  if (!Array.isArray(value)) return { ok: false, displayActual: 'La función no regresó una lista.' };
+
+  const source = Array.isArray(test.intervals) ? test.intervals : [];
+  const available = new Map();
+  for (const interval of source) {
+    const key = JSON.stringify(interval);
+    available.set(key, (available.get(key) || 0) + 1);
+  }
+
+  for (const interval of value) {
+    if (!Array.isArray(interval) || interval.length !== 2 || !interval.every(Number.isFinite)) {
+      return { ok: false, displayActual: 'La salida contiene un intervalo inválido.' };
+    }
+    const key = JSON.stringify(interval);
+    const count = available.get(key) || 0;
+    if (count <= 0) return { ok: false, displayActual: 'La salida usa un intervalo que no está disponible en la entrada.' };
+    available.set(key, count - 1);
+  }
+
+  const ordered = [...value].sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+  for (let i = 1; i < ordered.length; i += 1) {
+    if (ordered[i][0] < ordered[i - 1][1]) {
+      return { ok: false, displayActual: 'Los intervalos regresados se traslapan.' };
+    }
+  }
+
+  const ok = value.length === Number(test.expectedCount);
+  return { ok, displayActual: `${value.length} intervalos compatibles` };
+}
+
+function validateCoinCollection(actualText, test) {
+  let value;
+  try { value = JSON.parse(actualText); } catch (_) { return { ok: false, displayActual: actualText }; }
+  if (!Array.isArray(value) || value.some((x) => !Number.isInteger(x))) {
+    return { ok: false, displayActual: 'La función debe regresar una lista de monedas enteras.' };
+  }
+  const allowed = new Set((test.coins || []).map(Number));
+  if (value.some((x) => !allowed.has(x))) {
+    return { ok: false, displayActual: 'La salida contiene una denominación no permitida.' };
+  }
+  const sum = value.reduce((a, b) => a + b, 0);
+  if (sum !== Number(test.amount)) {
+    return { ok: false, displayActual: `${value.length} monedas; suma ${sum}` };
+  }
+  const ok = value.length === Number(test.expectedCount);
+  return { ok, displayActual: `${value.length} monedas; suma ${sum}` };
+}
+
+function validateBeautifulArray(actualText, test) {
+  let value;
+  try { value = JSON.parse(actualText); } catch (_) { return { ok: false, displayActual: actualText }; }
+  const n = Number(test.n);
+  if (!Array.isArray(value) || value.length !== n || value.some((x) => !Number.isInteger(x))) {
+    return { ok: false, displayActual: 'La salida no es una permutación válida.' };
+  }
+  const sorted = [...value].sort((a, b) => a - b);
+  for (let i = 0; i < n; i += 1) {
+    if (sorted[i] !== i + 1) return { ok: false, displayActual: 'La salida no contiene exactamente los valores 1..n.' };
+  }
+  for (let i = 0; i < n; i += 1) {
+    for (let k = i + 1; k < n; k += 1) {
+      for (let j = k + 1; j < n; j += 1) {
+        if (2 * value[k] === value[i] + value[j]) {
+          return { ok: false, displayActual: `No cumple la propiedad en i=${i}, k=${k}, j=${j}.` };
+        }
+      }
+    }
+  }
+  return { ok: true, displayActual: JSON.stringify(value) };
+}
+
 function validateNKnights(actualText, test) {
   let value;
   try {
@@ -174,9 +260,21 @@ function compareResult(actualText, test) {
     }
   }
 
-  if (mode === 'nknights') {
-    return validateNKnights(actualText, test);
+  if (mode === 'unordered_nested_set') {
+    try {
+      const actual = canonicalNestedSet(JSON.parse(actualText));
+      const expected = canonicalNestedSet(JSON.parse(String(test.expected)));
+      const ok = actual !== null && expected !== null && JSON.stringify(actual) === JSON.stringify(expected);
+      return { ok, displayActual: actualText };
+    } catch (_) {
+      return { ok: false, displayActual: actualText };
+    }
   }
+
+  if (mode === 'activity') return validateActivity(actualText, test);
+  if (mode === 'coin_collection') return validateCoinCollection(actualText, test);
+  if (mode === 'beautiful') return validateBeautifulArray(actualText, test);
+  if (mode === 'nknights') return validateNKnights(actualText, test);
 
   return {
     ok: actualText.trimEnd() === String(test.expected).trimEnd(),

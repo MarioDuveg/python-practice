@@ -5,7 +5,7 @@ const problems = require('./problems.json');
 const { judge, runtimeDiagnostic } = require('./judge');
 
 const app = express();
-const APP_VERSION = 'python-v1';
+const APP_VERSION = 'python-v2-21-problems';
 app.set('etag', false);
 const PORT = Number(process.env.PORT || 10000);
 const MAX_CODE_LENGTH = 30000;

@@ -3,8 +3,8 @@
     "id": "assign-cookies",
     "title": "Assign Cookies",
     "difficulty": "Easy",
-    "category": "Arrays",
-    "statement": "Dadas dos listas g y s, donde g[i] es el tamaño mínimo de galleta que satisface al niño i y s[j] es el tamaño de la galleta j, regresa el máximo número de niños que pueden quedar satisfechos. Cada niño puede recibir como máximo una galleta y cada galleta puede asignarse a lo más a un niño. Determina también la complejidad temporal y espacial de tu solución.",
+    "category": "Greedy",
+    "statement": "Dadas dos listas de enteros g y s, donde g[i] es el tamaño mínimo de galleta que satisface al niño i y s[j] es el tamaño de la galleta j, regresa el máximo número de niños que pueden quedar satisfechos. Cada niño puede recibir como máximo una galleta y cada galleta puede asignarse a lo más a un niño. Indica la complejidad temporal y espacial de tu solución.",
     "constraints": [
       "1 <= len(g), len(s) <= 30000",
       "1 <= g[i], s[j] <= 2^31 - 1"
@@ -44,11 +44,235 @@
         "expected": "2",
         "call": "solution.findContentChildren([1,1,1], [1,1])",
         "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "activity-selection",
+    "title": "Activity Selection",
+    "difficulty": "Medium",
+    "category": "Greedy",
+    "statement": "Dada una lista de intervalos [inicio, fin], regresa un subconjunto de máxima cardinalidad en el que ningún par de intervalos se traslape. Dos intervalos son compatibles si uno termina antes o exactamente cuando comienza el siguiente. Indica la complejidad temporal y espacial de tu solución.",
+    "constraints": [
+      "1 <= len(intervals) <= 10000",
+      "Cada intervalo tiene exactamente dos enteros",
+      "inicio < fin"
+    ],
+    "template": "class Solution:\n    def activitySelection(self, intervals: list[list[int]]) -> list[list[int]]:\n        # Tu código aquí\n        pass",
+    "examples": [
+      {
+        "input": "intervals = [[1,3],[2,4],[3,5],[0,7],[5,7],[8,9]]",
+        "output": "Una respuesta válida: [[1,3],[3,5],[5,7],[8,9]]"
+      }
+    ],
+    "tests": [
+      {
+        "input": "intervals = [[1,3],[2,4],[3,5],[0,7],[5,7],[8,9]]",
+        "expected": "4",
+        "expectedCount": 4,
+        "intervals": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            8,
+            9
+          ]
+        ],
+        "call": "solution.activitySelection([[1,3],[2,4],[3,5],[0,7],[5,7],[8,9]])",
+        "compare": "activity",
+        "hidden": false
       },
       {
-        "input": "g = [5,3,2], s = [1,2,3,4,5]",
+        "input": "intervals = [[1,2],[2,3],[3,4],[1,3]]",
         "expected": "3",
-        "call": "solution.findContentChildren([5,3,2], [1,2,3,4,5])",
+        "expectedCount": 3,
+        "intervals": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "call": "solution.activitySelection([[1,2],[2,3],[3,4],[1,3]])",
+        "compare": "activity",
+        "hidden": false
+      },
+      {
+        "input": "intervals = [[0,2],[1,5],[2,4],[4,7],[5,9],[7,8]]",
+        "expected": "4",
+        "expectedCount": 4,
+        "intervals": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            5,
+            9
+          ],
+          [
+            7,
+            8
+          ]
+        ],
+        "call": "solution.activitySelection([[0,2],[1,5],[2,4],[4,7],[5,9],[7,8]])",
+        "compare": "activity",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "coin-change-canonical",
+    "title": "Coin Change canónico",
+    "difficulty": "Medium",
+    "category": "Greedy",
+    "statement": "Dado un entero positivo amount y una lista de denominaciones coins que forman un sistema monetario canónico, regresa una colección de monedas que sume exactamente amount usando el mínimo número posible de monedas. Indica la complejidad temporal y espacial de tu solución.",
+    "constraints": [
+      "amount > 0",
+      "coins contiene enteros positivos distintos",
+      "El sistema de monedas es canónico",
+      "La denominación 1 está disponible"
+    ],
+    "template": "class Solution:\n    def coinChangeCanonical(self, amount: int, coins: list[int]) -> list[int]:\n        # Tu código aquí\n        pass",
+    "examples": [
+      {
+        "input": "amount = 87, coins = [1,5,10,25]",
+        "output": "[25,25,25,10,1,1]"
+      }
+    ],
+    "tests": [
+      {
+        "input": "amount = 87, coins = [1,5,10,25]",
+        "expected": "6",
+        "expectedCount": 6,
+        "amount": 87,
+        "coins": [
+          1,
+          5,
+          10,
+          25
+        ],
+        "call": "solution.coinChangeCanonical(87, [1,5,10,25])",
+        "compare": "coin_collection",
+        "hidden": false
+      },
+      {
+        "input": "amount = 41, coins = [1,5,10,25]",
+        "expected": "4",
+        "expectedCount": 4,
+        "amount": 41,
+        "coins": [
+          1,
+          5,
+          10,
+          25
+        ],
+        "call": "solution.coinChangeCanonical(41, [1,5,10,25])",
+        "compare": "coin_collection",
+        "hidden": false
+      },
+      {
+        "input": "amount = 99, coins = [1,5,10,25]",
+        "expected": "9",
+        "expectedCount": 9,
+        "amount": 99,
+        "coins": [
+          1,
+          5,
+          10,
+          25
+        ],
+        "call": "solution.coinChangeCanonical(99, [1,5,10,25])",
+        "compare": "coin_collection",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "min-max-pairs",
+    "title": "Min-Max < 1.5n",
+    "difficulty": "Medium",
+    "category": "Comparación por parejas",
+    "statement": "Dada una lista no vacía de enteros nums, regresa su mínimo y su máximo. Diseña la solución para utilizar menos de 1.5n comparaciones en el peor caso, salvo términos constantes. Indica la complejidad temporal y espacial de tu solución.",
+    "constraints": [
+      "1 <= len(nums) <= 100000",
+      "nums contiene enteros"
+    ],
+    "template": "class Solution:\n    def minMax(self, nums: list[int]) -> tuple[int, int]:\n        # Regresa (mínimo, máximo)\n        pass",
+    "examples": [
+      {
+        "input": "nums = [3,5,1,2,4,8]",
+        "output": "(1, 8)"
+      },
+      {
+        "input": "nums = [7]",
+        "output": "(7, 7)"
+      }
+    ],
+    "tests": [
+      {
+        "input": "nums = [3,5,1,2,4,8]",
+        "expected": "[1,8]",
+        "call": "solution.minMax([3,5,1,2,4,8])",
+        "hidden": false
+      },
+      {
+        "input": "nums = [7]",
+        "expected": "[7,7]",
+        "call": "solution.minMax([7])",
+        "hidden": false
+      },
+      {
+        "input": "nums = [-5,0,12,3,-9,8,21]",
+        "expected": "[-9,21]",
+        "call": "solution.minMax([-5,0,12,3,-9,8,21])",
+        "hidden": true
+      },
+      {
+        "input": "nums = [4,4,4,4]",
+        "expected": "[4,4]",
+        "call": "solution.minMax([4,4,4,4])",
         "hidden": true
       }
     ]
@@ -57,8 +281,8 @@
     "id": "pow-x-n",
     "title": "Pow(x, n)",
     "difficulty": "Medium",
-    "category": "Math",
-    "statement": "Dados un número real x y un entero n, calcula x elevado a n. Considera correctamente exponentes positivos, cero y negativos. Determina también la complejidad temporal y espacial de tu solución.",
+    "category": "Divide & Conquer",
+    "statement": "Dados un número real x y un entero n, calcula x elevado a n. Considera correctamente exponentes positivos, cero y negativos. Indica la complejidad temporal y espacial de tu solución.",
     "constraints": [
       "-100.0 < x < 100.0",
       "-2^31 <= n <= 2^31 - 1",
@@ -98,26 +322,244 @@
         "hidden": true
       },
       {
-        "input": "x = 0.5, n = -10",
-        "expected": "1024.0",
-        "call": "solution.myPow(0.5, -10)",
-        "compare": "float",
-        "hidden": true
-      },
-      {
         "input": "x = 1.000000001, n = 1000000000",
         "expected": "2.7182820520115603",
         "call": "solution.myPow(1.000000001, 1000000000)",
         "compare": "float",
         "tolerance": 1e-08,
         "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "jump-game",
+    "title": "Jump Game",
+    "difficulty": "Medium",
+    "category": "Greedy",
+    "statement": "Dada una lista nums de enteros no negativos, donde nums[i] indica la distancia máxima que puede saltarse desde i, determina si es posible alcanzar el último índice comenzando en el índice 0. Indica la complejidad temporal y espacial de tu solución.",
+    "constraints": [
+      "1 <= len(nums) <= 100000",
+      "0 <= nums[i] <= 100000"
+    ],
+    "template": "class Solution:\n    def canJump(self, nums: list[int]) -> bool:\n        # Tu código aquí\n        pass",
+    "examples": [
+      {
+        "input": "nums = [2,3,1,1,4]",
+        "output": "True"
       },
       {
-        "input": "x = 1.000000001, n = -1000000000",
-        "expected": "0.36787941091690185",
-        "call": "solution.myPow(1.000000001, -1000000000)",
-        "compare": "float",
-        "tolerance": 1e-08,
+        "input": "nums = [3,2,1,0,4]",
+        "output": "False"
+      }
+    ],
+    "tests": [
+      {
+        "input": "nums = [2,3,1,1,4]",
+        "expected": "true",
+        "publicExpected": "True",
+        "call": "solution.canJump([2,3,1,1,4])",
+        "hidden": false
+      },
+      {
+        "input": "nums = [3,2,1,0,4]",
+        "expected": "false",
+        "publicExpected": "False",
+        "call": "solution.canJump([3,2,1,0,4])",
+        "hidden": false
+      },
+      {
+        "input": "nums = [0]",
+        "expected": "true",
+        "call": "solution.canJump([0])",
+        "hidden": true
+      },
+      {
+        "input": "nums = [2,0,0]",
+        "expected": "true",
+        "call": "solution.canJump([2,0,0])",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "erase-overlap-intervals",
+    "title": "eraseOverlapIntervals",
+    "difficulty": "Medium",
+    "category": "Greedy",
+    "statement": "Dada una lista de intervalos, regresa el mínimo número de intervalos que deben eliminarse para que los restantes no se traslapen. Los intervalos que únicamente se tocan en un extremo no se consideran traslapados. Indica la complejidad temporal y espacial de tu solución.",
+    "constraints": [
+      "1 <= len(intervals) <= 100000",
+      "Cada intervalo tiene dos valores [inicio, fin]",
+      "inicio < fin"
+    ],
+    "template": "class Solution:\n    def eraseOverlapIntervals(self, intervals: list[list[int]]) -> int:\n        # Tu código aquí\n        pass",
+    "examples": [
+      {
+        "input": "intervals = [[1,2],[2,3],[3,4],[1,3]]",
+        "output": "1"
+      },
+      {
+        "input": "intervals = [[1,2],[1,2],[1,2]]",
+        "output": "2"
+      }
+    ],
+    "tests": [
+      {
+        "input": "intervals = [[1,2],[2,3],[3,4],[1,3]]",
+        "expected": "1",
+        "call": "solution.eraseOverlapIntervals([[1,2],[2,3],[3,4],[1,3]])",
+        "hidden": false
+      },
+      {
+        "input": "intervals = [[1,2],[1,2],[1,2]]",
+        "expected": "2",
+        "call": "solution.eraseOverlapIntervals([[1,2],[1,2],[1,2]])",
+        "hidden": false
+      },
+      {
+        "input": "intervals = [[1,2],[2,3]]",
+        "expected": "0",
+        "call": "solution.eraseOverlapIntervals([[1,2],[2,3]])",
+        "hidden": true
+      },
+      {
+        "input": "intervals = [[0,5],[1,2],[2,3],[3,4]]",
+        "expected": "1",
+        "call": "solution.eraseOverlapIntervals([[0,5],[1,2],[2,3],[3,4]])",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "minimum-arrows",
+    "title": "Minimum Number of Arrows to Burst Balloons",
+    "difficulty": "Medium",
+    "category": "Greedy",
+    "statement": "Cada globo ocupa un intervalo cerrado [inicio, fin] sobre una línea horizontal. Una flecha disparada en x revienta todos los globos cuyo intervalo contiene x. Regresa el mínimo número de flechas necesarias para reventar todos los globos. Indica la complejidad temporal y espacial de tu solución.",
+    "constraints": [
+      "1 <= len(points) <= 100000",
+      "points[i] = [inicio, fin]",
+      "inicio <= fin"
+    ],
+    "template": "class Solution:\n    def findMinArrowShots(self, points: list[list[int]]) -> int:\n        # Tu código aquí\n        pass",
+    "examples": [
+      {
+        "input": "points = [[10,16],[2,8],[1,6],[7,12]]",
+        "output": "2"
+      },
+      {
+        "input": "points = [[1,2],[3,4],[5,6],[7,8]]",
+        "output": "4"
+      }
+    ],
+    "tests": [
+      {
+        "input": "points = [[10,16],[2,8],[1,6],[7,12]]",
+        "expected": "2",
+        "call": "solution.findMinArrowShots([[10,16],[2,8],[1,6],[7,12]])",
+        "hidden": false
+      },
+      {
+        "input": "points = [[1,2],[3,4],[5,6],[7,8]]",
+        "expected": "4",
+        "call": "solution.findMinArrowShots([[1,2],[3,4],[5,6],[7,8]])",
+        "hidden": false
+      },
+      {
+        "input": "points = [[1,2],[2,3],[3,4],[4,5]]",
+        "expected": "2",
+        "call": "solution.findMinArrowShots([[1,2],[2,3],[3,4],[4,5]])",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "gas-station",
+    "title": "Gas Station",
+    "difficulty": "Medium",
+    "category": "Greedy",
+    "statement": "Dadas dos listas gas y cost del mismo tamaño, donde gas[i] es la gasolina disponible en la estación i y cost[i] es la gasolina necesaria para viajar a la siguiente estación, regresa un índice desde el cual sea posible completar una vuelta al circuito. Si no existe solución, regresa -1. Indica la complejidad temporal y espacial de tu solución.",
+    "constraints": [
+      "len(gas) == len(cost)",
+      "1 <= len(gas) <= 100000",
+      "gas[i] y cost[i] son no negativos"
+    ],
+    "template": "class Solution:\n    def canCompleteCircuit(self, gas: list[int], cost: list[int]) -> int:\n        # Tu código aquí\n        pass",
+    "examples": [
+      {
+        "input": "gas = [1,2,3,4,5], cost = [3,4,5,1,2]",
+        "output": "3"
+      },
+      {
+        "input": "gas = [2,3,4], cost = [3,4,3]",
+        "output": "-1"
+      }
+    ],
+    "tests": [
+      {
+        "input": "gas = [1,2,3,4,5], cost = [3,4,5,1,2]",
+        "expected": "3",
+        "call": "solution.canCompleteCircuit([1,2,3,4,5], [3,4,5,1,2])",
+        "hidden": false
+      },
+      {
+        "input": "gas = [2,3,4], cost = [3,4,3]",
+        "expected": "-1",
+        "call": "solution.canCompleteCircuit([2,3,4], [3,4,3])",
+        "hidden": false
+      },
+      {
+        "input": "gas = [5], cost = [4]",
+        "expected": "0",
+        "call": "solution.canCompleteCircuit([5], [4])",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "search-range",
+    "title": "Find First and Last Position",
+    "difficulty": "Medium",
+    "category": "Binary Search",
+    "statement": "Dado un arreglo nums ordenado de forma no decreciente y un entero target, regresa [inicio, fin] con la primera y la última posición de target. Si target no aparece, regresa [-1, -1]. Indica la complejidad temporal y espacial de tu solución.",
+    "constraints": [
+      "0 <= len(nums) <= 100000",
+      "nums está ordenado de forma no decreciente"
+    ],
+    "template": "class Solution:\n    def searchRange(self, nums: list[int], target: int) -> list[int]:\n        # Tu código aquí\n        pass",
+    "examples": [
+      {
+        "input": "nums = [5,7,7,8,8,10], target = 8",
+        "output": "[3,4]"
+      },
+      {
+        "input": "nums = [5,7,7,8,8,10], target = 6",
+        "output": "[-1,-1]"
+      }
+    ],
+    "tests": [
+      {
+        "input": "nums = [5,7,7,8,8,10], target = 8",
+        "expected": "[3,4]",
+        "call": "solution.searchRange([5,7,7,8,8,10], 8)",
+        "hidden": false
+      },
+      {
+        "input": "nums = [5,7,7,8,8,10], target = 6",
+        "expected": "[-1,-1]",
+        "call": "solution.searchRange([5,7,7,8,8,10], 6)",
+        "hidden": false
+      },
+      {
+        "input": "nums = [], target = 0",
+        "expected": "[-1,-1]",
+        "call": "solution.searchRange([], 0)",
+        "hidden": true
+      },
+      {
+        "input": "nums = [2,2], target = 2",
+        "expected": "[0,1]",
+        "call": "solution.searchRange([2,2], 2)",
         "hidden": true
       }
     ]
@@ -126,8 +568,8 @@
     "id": "search-rotated-array",
     "title": "Search in Rotated Sorted Array",
     "difficulty": "Medium",
-    "category": "Arrays",
-    "statement": "Dado un arreglo nums de enteros distintos, originalmente ordenado de forma ascendente y posteriormente rotado, y un entero target, regresa el índice de target. Si no existe, regresa -1. Determina también la complejidad temporal y espacial de tu solución.",
+    "category": "Binary Search",
+    "statement": "Dado un arreglo nums de enteros distintos, originalmente ordenado de forma ascendente y posteriormente rotado, y un entero target, regresa el índice de target. Si no existe, regresa -1. Indica la complejidad temporal y espacial de tu solución.",
     "constraints": [
       "1 <= len(nums) <= 5000",
       "Los valores de nums son distintos",
@@ -164,21 +606,323 @@
         "hidden": true
       },
       {
-        "input": "nums = [1], target = 0",
-        "expected": "-1",
-        "call": "solution.search([1], 0)",
-        "hidden": true
-      },
-      {
         "input": "nums = [5,1,3], target = 3",
         "expected": "2",
         "call": "solution.search([5,1,3], 3)",
         "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "jump-game-ii",
+    "title": "Jump Game II",
+    "difficulty": "Medium",
+    "category": "Greedy / BFS implícito",
+    "statement": "Dada una lista nums de enteros no negativos, donde nums[i] representa la distancia máxima de salto desde i, regresa el mínimo número de saltos necesarios para llegar al último índice. Se garantiza que el último índice es alcanzable. Indica la complejidad temporal y espacial de tu solución.",
+    "constraints": [
+      "1 <= len(nums) <= 10000",
+      "0 <= nums[i] <= 1000",
+      "El último índice siempre es alcanzable"
+    ],
+    "template": "class Solution:\n    def jump(self, nums: list[int]) -> int:\n        # Tu código aquí\n        pass",
+    "examples": [
+      {
+        "input": "nums = [2,3,1,1,4]",
+        "output": "2"
       },
       {
-        "input": "nums = [6,7,8,1,2,3,4,5], target = 6",
+        "input": "nums = [2,3,0,1,4]",
+        "output": "2"
+      }
+    ],
+    "tests": [
+      {
+        "input": "nums = [2,3,1,1,4]",
+        "expected": "2",
+        "call": "solution.jump([2,3,1,1,4])",
+        "hidden": false
+      },
+      {
+        "input": "nums = [2,3,0,1,4]",
+        "expected": "2",
+        "call": "solution.jump([2,3,0,1,4])",
+        "hidden": false
+      },
+      {
+        "input": "nums = [0]",
         "expected": "0",
-        "call": "solution.search([6,7,8,1,2,3,4,5], 6)",
+        "call": "solution.jump([0])",
+        "hidden": true
+      },
+      {
+        "input": "nums = [1,1,1,1]",
+        "expected": "3",
+        "call": "solution.jump([1,1,1,1])",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "subsets-ii",
+    "title": "Subsets II",
+    "difficulty": "Medium",
+    "category": "Backtracking",
+    "statement": "Dada una lista nums que puede contener valores repetidos, regresa todos sus subconjuntos diferentes, incluyendo el conjunto vacío. La respuesta no debe contener subconjuntos duplicados. El orden de los subconjuntos no importa. Indica la complejidad temporal y espacial de tu solución.",
+    "constraints": [
+      "1 <= len(nums) <= 10",
+      "-10 <= nums[i] <= 10"
+    ],
+    "template": "class Solution:\n    def subsetsWithDup(self, nums: list[int]) -> list[list[int]]:\n        # Tu código aquí\n        pass",
+    "examples": [
+      {
+        "input": "nums = [1,2,2]",
+        "output": "[[],[1],[1,2],[1,2,2],[2],[2,2]]"
+      }
+    ],
+    "tests": [
+      {
+        "input": "nums = [1,2,2]",
+        "expected": "[[],[1],[1,2],[1,2,2],[2],[2,2]]",
+        "call": "solution.subsetsWithDup([1,2,2])",
+        "compare": "unordered_nested_set",
+        "hidden": false
+      },
+      {
+        "input": "nums = [0]",
+        "expected": "[[],[0]]",
+        "call": "solution.subsetsWithDup([0])",
+        "compare": "unordered_nested_set",
+        "hidden": false
+      },
+      {
+        "input": "nums = [1,1,1]",
+        "expected": "[[],[1],[1,1],[1,1,1]]",
+        "call": "solution.subsetsWithDup([1,1,1])",
+        "compare": "unordered_nested_set",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "generate-parentheses",
+    "title": "Generate Parentheses",
+    "difficulty": "Medium",
+    "category": "Backtracking",
+    "statement": "Dado un entero positivo n, genera todas las combinaciones diferentes formadas por n pares de paréntesis correctamente balanceados. El orden de las cadenas no importa. Indica la complejidad temporal y espacial de tu solución.",
+    "constraints": [
+      "1 <= n <= 7",
+      "Cada cadena debe usar exactamente n aperturas y n cierres"
+    ],
+    "template": "class Solution:\n    def generateParenthesis(self, n: int) -> list[str]:\n        # Tu código aquí\n        pass",
+    "examples": [
+      {
+        "input": "n = 3",
+        "output": "[\"((()))\",\"(()())\",\"(())()\",\"()(())\",\"()()()\"]"
+      }
+    ],
+    "tests": [
+      {
+        "input": "n = 3",
+        "expected": "[\"((()))\",\"(()())\",\"(())()\",\"()(())\",\"()()()\"]",
+        "call": "solution.generateParenthesis(3)",
+        "compare": "unordered",
+        "hidden": false
+      },
+      {
+        "input": "n = 1",
+        "expected": "[\"()\"]",
+        "call": "solution.generateParenthesis(1)",
+        "compare": "unordered",
+        "hidden": false
+      },
+      {
+        "input": "n = 4",
+        "expected": "[\"(((())))\",\"((()()))\",\"((())())\",\"((()))()\",\"(()(()))\",\"(()()())\",\"(()())()\",\"(())(())\",\"(())()()\",\"()((()))\",\"()(()())\",\"()(())()\",\"()()(())\",\"()()()()\"]",
+        "call": "solution.generateParenthesis(4)",
+        "compare": "unordered",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "combination-sum-ii",
+    "title": "Combination Sum II",
+    "difficulty": "Medium",
+    "category": "Backtracking",
+    "statement": "Dada una lista de enteros positivos candidates y un entero target, regresa todas las combinaciones únicas cuyos elementos sumen exactamente target. Cada posición de candidates puede utilizarse como máximo una vez en cada combinación. El orden de las combinaciones no importa. Indica la complejidad temporal y espacial de tu solución.",
+    "constraints": [
+      "1 <= len(candidates) <= 100",
+      "1 <= candidates[i] <= 50",
+      "1 <= target <= 30"
+    ],
+    "template": "class Solution:\n    def combinationSum2(self, candidates: list[int], target: int) -> list[list[int]]:\n        # Tu código aquí\n        pass",
+    "examples": [
+      {
+        "input": "candidates = [10,1,2,7,6,1,5], target = 8",
+        "output": "[[1,1,6],[1,2,5],[1,7],[2,6]]"
+      }
+    ],
+    "tests": [
+      {
+        "input": "candidates = [10,1,2,7,6,1,5], target = 8",
+        "expected": "[[1,1,6],[1,2,5],[1,7],[2,6]]",
+        "call": "solution.combinationSum2([10,1,2,7,6,1,5], 8)",
+        "compare": "unordered_nested_set",
+        "hidden": false
+      },
+      {
+        "input": "candidates = [2,5,2,1,2], target = 5",
+        "expected": "[[1,2,2],[5]]",
+        "call": "solution.combinationSum2([2,5,2,1,2], 5)",
+        "compare": "unordered_nested_set",
+        "hidden": false
+      },
+      {
+        "input": "candidates = [1,1,1,2,2], target = 4",
+        "expected": "[[1,1,2],[2,2]]",
+        "call": "solution.combinationSum2([1,1,1,2,2], 4)",
+        "compare": "unordered_nested_set",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "permutations-ii",
+    "title": "Permutations II",
+    "difficulty": "Medium",
+    "category": "Backtracking",
+    "statement": "Dada una lista nums que puede contener valores repetidos, regresa todas las permutaciones diferentes de sus elementos. El orden de las permutaciones en la respuesta no importa. Indica la complejidad temporal y espacial de tu solución.",
+    "constraints": [
+      "1 <= len(nums) <= 8",
+      "-10 <= nums[i] <= 10"
+    ],
+    "template": "class Solution:\n    def permuteUnique(self, nums: list[int]) -> list[list[int]]:\n        # Tu código aquí\n        pass",
+    "examples": [
+      {
+        "input": "nums = [1,1,2]",
+        "output": "[[1,1,2],[1,2,1],[2,1,1]]"
+      }
+    ],
+    "tests": [
+      {
+        "input": "nums = [1,1,2]",
+        "expected": "[[1,1,2],[1,2,1],[2,1,1]]",
+        "call": "solution.permuteUnique([1,1,2])",
+        "compare": "unordered",
+        "hidden": false
+      },
+      {
+        "input": "nums = [1,2]",
+        "expected": "[[1,2],[2,1]]",
+        "call": "solution.permuteUnique([1,2])",
+        "compare": "unordered",
+        "hidden": false
+      },
+      {
+        "input": "nums = [2,2,1,1]",
+        "expected": "[[1,1,2,2],[1,2,1,2],[1,2,2,1],[2,1,1,2],[2,1,2,1],[2,2,1,1]]",
+        "call": "solution.permuteUnique([2,2,1,1])",
+        "compare": "unordered",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "beautiful-array",
+    "title": "Beautiful Array",
+    "difficulty": "Medium",
+    "category": "Divide & Conquer",
+    "statement": "Dado un entero positivo n, regresa una permutación A de los enteros 1..n tal que no existan índices i < k < j con 2*A[k] = A[i] + A[j]. Cualquier permutación válida es aceptada. Indica la complejidad temporal y espacial de tu solución.",
+    "constraints": [
+      "1 <= n <= 1000",
+      "La salida debe ser una permutación de 1,2,...,n"
+    ],
+    "template": "class Solution:\n    def beautifulArray(self, n: int) -> list[int]:\n        # Tu código aquí\n        pass",
+    "examples": [
+      {
+        "input": "n = 4",
+        "output": "Una respuesta válida: [1,3,2,4]"
+      }
+    ],
+    "tests": [
+      {
+        "input": "n = 4",
+        "expected": "permutación válida",
+        "n": 4,
+        "call": "solution.beautifulArray(4)",
+        "compare": "beautiful",
+        "hidden": false
+      },
+      {
+        "input": "n = 1",
+        "expected": "[1]",
+        "n": 1,
+        "call": "solution.beautifulArray(1)",
+        "compare": "beautiful",
+        "hidden": false
+      },
+      {
+        "input": "n = 10",
+        "expected": "permutación válida",
+        "n": 10,
+        "call": "solution.beautifulArray(10)",
+        "compare": "beautiful",
+        "hidden": true
+      },
+      {
+        "input": "n = 25",
+        "expected": "permutación válida",
+        "n": 25,
+        "call": "solution.beautifulArray(25)",
+        "compare": "beautiful",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "kth-largest",
+    "title": "Kth Largest / Quickselect",
+    "difficulty": "Medium",
+    "category": "Divide & Conquer",
+    "statement": "Dada una lista nums y un entero k, regresa el k-ésimo elemento más grande del arreglo. Indica la complejidad temporal y espacial de tu solución.",
+    "constraints": [
+      "1 <= k <= len(nums) <= 100000",
+      "-10000 <= nums[i] <= 10000"
+    ],
+    "template": "class Solution:\n    def findKthLargest(self, nums: list[int], k: int) -> int:\n        # Tu código aquí\n        pass",
+    "examples": [
+      {
+        "input": "nums = [3,2,1,5,6,4], k = 2",
+        "output": "5"
+      },
+      {
+        "input": "nums = [3,2,3,1,2,4,5,5,6], k = 4",
+        "output": "4"
+      }
+    ],
+    "tests": [
+      {
+        "input": "nums = [3,2,1,5,6,4], k = 2",
+        "expected": "5",
+        "call": "solution.findKthLargest([3,2,1,5,6,4], 2)",
+        "hidden": false
+      },
+      {
+        "input": "nums = [3,2,3,1,2,4,5,5,6], k = 4",
+        "expected": "4",
+        "call": "solution.findKthLargest([3,2,3,1,2,4,5,5,6], 4)",
+        "hidden": false
+      },
+      {
+        "input": "nums = [1], k = 1",
+        "expected": "1",
+        "call": "solution.findKthLargest([1], 1)",
+        "hidden": true
+      },
+      {
+        "input": "nums = [-1,2,0], k = 2",
+        "expected": "0",
+        "call": "solution.findKthLargest([-1,2,0], 2)",
         "hidden": true
       }
     ]
@@ -187,8 +931,8 @@
     "id": "n-knights",
     "title": "N-Knights",
     "difficulty": "Medium",
-    "category": "Chess",
-    "statement": "Dado un entero positivo n, coloca exactamente n caballos en un tablero n x n de forma que ningún caballo ataque a otro. Regresa todas las configuraciones válidas como listas de cadenas, usando K para una casilla ocupada y . para una casilla vacía. El orden de las configuraciones no importa. Determina también la complejidad temporal y espacial de tu solución.",
+    "category": "Backtracking + poda",
+    "statement": "Dado un entero positivo n, coloca exactamente n caballos en un tablero n x n de forma que ningún caballo ataque a otro. Regresa todas las configuraciones válidas como listas de cadenas, usando K para una casilla ocupada y . para una casilla vacía. El orden de las configuraciones no importa. Indica la complejidad temporal y espacial de tu solución.",
     "constraints": [
       "1 <= n <= 4 en los casos del juez",
       "Cada tablero debe contener exactamente n caballos",
@@ -202,7 +946,7 @@
       },
       {
         "input": "n = 3",
-        "output": "Una configuración válida es [\"KKK\", \"...\", \"...\"]"
+        "output": "Una configuración válida: [\"KKK\",\"...\",\"...\"]"
       }
     ],
     "tests": [
@@ -247,60 +991,102 @@
     ]
   },
   {
-    "id": "generate-parentheses",
-    "title": "Generate Parentheses",
-    "difficulty": "Medium",
-    "category": "Strings",
-    "statement": "Dado un entero positivo n, genera todas las combinaciones diferentes de n pares de paréntesis correctamente balanceados. El orden de las cadenas en la respuesta no importa. Determina también la complejidad temporal y espacial de tu solución.",
+    "id": "candy",
+    "title": "Candy",
+    "difficulty": "Hard",
+    "category": "Greedy",
+    "statement": "Dada una lista ratings, entrega caramelos a cada niño de modo que todos reciban al menos uno y cualquier niño con mayor rating que un vecino reciba más caramelos que ese vecino. Regresa el mínimo número total de caramelos necesarios. Indica la complejidad temporal y espacial de tu solución.",
     "constraints": [
-      "1 <= n <= 5 en los casos del juez",
-      "Cada cadena debe contener exactamente n paréntesis de apertura y n de cierre"
+      "1 <= len(ratings) <= 20000",
+      "0 <= ratings[i] <= 20000"
     ],
-    "template": "class Solution:\n    def generateParenthesis(self, n: int) -> list[str]:\n        # Tu código aquí\n        pass",
+    "template": "class Solution:\n    def candy(self, ratings: list[int]) -> int:\n        # Tu código aquí\n        pass",
     "examples": [
       {
-        "input": "n = 3",
-        "output": "[\"((()))\", \"(()())\", \"(())()\", \"()(())\", \"()()()\"]"
+        "input": "ratings = [1,0,2]",
+        "output": "5"
       },
       {
-        "input": "n = 1",
-        "output": "[\"()\"]"
+        "input": "ratings = [1,2,2]",
+        "output": "4"
       }
     ],
     "tests": [
       {
-        "input": "n = 1",
-        "expected": "[\"()\"]",
-        "call": "solution.generateParenthesis(1)",
-        "compare": "unordered",
+        "input": "ratings = [1,0,2]",
+        "expected": "5",
+        "call": "solution.candy([1,0,2])",
         "hidden": false
       },
       {
-        "input": "n = 3",
-        "expected": "[\"((()))\",\"(()())\",\"(())()\",\"()(())\",\"()()()\"]",
-        "call": "solution.generateParenthesis(3)",
-        "compare": "unordered",
+        "input": "ratings = [1,2,2]",
+        "expected": "4",
+        "call": "solution.candy([1,2,2])",
         "hidden": false
       },
       {
-        "input": "n = 2",
-        "expected": "[\"(())\",\"()()\"]",
-        "call": "solution.generateParenthesis(2)",
-        "compare": "unordered",
+        "input": "ratings = [1]",
+        "expected": "1",
+        "call": "solution.candy([1])",
         "hidden": true
       },
       {
-        "input": "n = 4",
-        "expected": "[\"(((())))\",\"((()()))\",\"((())())\",\"((()))()\",\"(()(()))\",\"(()()())\",\"(()())()\",\"(())(())\",\"(())()()\",\"()((()))\",\"()(()())\",\"()(())()\",\"()()(())\",\"()()()()\"]",
-        "call": "solution.generateParenthesis(4)",
-        "compare": "unordered",
+        "input": "ratings = [1,3,4,5,2]",
+        "expected": "11",
+        "call": "solution.candy([1,3,4,5,2])",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "id": "median-two-sorted-arrays",
+    "title": "Median of Two Sorted Arrays",
+    "difficulty": "Hard",
+    "category": "Binary Search / Divide & Conquer",
+    "statement": "Dadas dos listas ordenadas nums1 y nums2, regresa la mediana de todos sus elementos. Indica la complejidad temporal y espacial de tu solución.",
+    "constraints": [
+      "nums1 y nums2 están ordenados de forma no decreciente",
+      "Al menos una de las dos listas contiene elementos",
+      "0 <= len(nums1), len(nums2) <= 1000"
+    ],
+    "template": "class Solution:\n    def findMedianSortedArrays(self, nums1: list[int], nums2: list[int]) -> float:\n        # Tu código aquí\n        pass",
+    "examples": [
+      {
+        "input": "nums1 = [1,3], nums2 = [2]",
+        "output": "2.0"
+      },
+      {
+        "input": "nums1 = [1,2], nums2 = [3,4]",
+        "output": "2.5"
+      }
+    ],
+    "tests": [
+      {
+        "input": "nums1 = [1,3], nums2 = [2]",
+        "expected": "2.0",
+        "call": "solution.findMedianSortedArrays([1,3], [2])",
+        "compare": "float",
+        "hidden": false
+      },
+      {
+        "input": "nums1 = [1,2], nums2 = [3,4]",
+        "expected": "2.5",
+        "call": "solution.findMedianSortedArrays([1,2], [3,4])",
+        "compare": "float",
+        "hidden": false
+      },
+      {
+        "input": "nums1 = [], nums2 = [1]",
+        "expected": "1.0",
+        "call": "solution.findMedianSortedArrays([], [1])",
+        "compare": "float",
         "hidden": true
       },
       {
-        "input": "n = 5",
-        "expected": "[\"((((()))))\",\"(((()())))\",\"(((())()))\",\"(((()))())\",\"(((())))()\",\"((()(())))\",\"((()()()))\",\"((()())())\",\"((()()))()\",\"((())(()))\",\"((())()())\",\"((())())()\",\"((()))(())\",\"((()))()()\",\"(()((())))\",\"(()(()()))\",\"(()(())())\",\"(()(()))()\",\"(()()(()))\",\"(()()()())\",\"(()()())()\",\"(()())(())\",\"(()())()()\",\"(())((()))\",\"(())(()())\",\"(())(())()\",\"(())()(())\",\"(())()()()\",\"()(((())))\",\"()((()()))\",\"()((())())\",\"()((()))()\",\"()(()(()))\",\"()(()()())\",\"()(()())()\",\"()(())(())\",\"()(())()()\",\"()()((()))\",\"()()(()())\",\"()()(())()\",\"()()()(())\",\"()()()()()\"]",
-        "call": "solution.generateParenthesis(5)",
-        "compare": "unordered",
+        "input": "nums1 = [0,0], nums2 = [0,0]",
+        "expected": "0.0",
+        "call": "solution.findMedianSortedArrays([0,0], [0,0])",
+        "compare": "float",
         "hidden": true
       }
     ]
