@@ -1,6 +1,6 @@
-# Python Practice Judge — 21 problemas
+# Python Practice Judge — 22 problemas
 
-Mini plataforma tipo LeetCode para practicar **21 problemas de algoritmos en Python 3**. Incluye editor Monaco, casos visibles y ocultos, ejecución real con Python y verdicts automáticos.
+Mini plataforma tipo LeetCode para practicar **22 problemas de algoritmos en Python 3**. Incluye editor Monaco, casos visibles y ocultos, ejecución real con Python y verdicts automáticos.
 
 ## Problemas incluidos
 
@@ -27,6 +27,7 @@ Mini plataforma tipo LeetCode para practicar **21 problemas de algoritmos en Pyt
 | 19 | N-Knights | Backtracking + poda |
 | 20 | Candy | Greedy |
 | 21 | Median of Two Sorted Arrays | Binary Search / Divide & Conquer |
+| 22 | N-Queens | Backtracking + poda |
 
 Las plantillas usan el formato `class Solution` habitual de LeetCode.
 
@@ -39,7 +40,7 @@ Las plantillas usan el formato `class Solution` habitual de LeetCode.
 - Código guardado localmente por problema mediante `localStorage`.
 - Comparación con tolerancia para resultados de punto flotante.
 - Comparación sin importar el orden para problemas con múltiples respuestas.
-- Validadores especiales para Activity Selection, Coin Change canónico, Beautiful Array y N-Knights.
+- Validadores especiales para Activity Selection, Coin Change canónico, Beautiful Array, N-Knights y N-Queens.
 - Dockerfile y `render.yaml` listos para Render.
 
 ## Ejecutar localmente

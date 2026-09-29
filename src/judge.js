@@ -235,6 +235,70 @@ function validateNKnights(actualText, test) {
   };
 }
 
+function validateNQueens(actualText, test) {
+  let value;
+  try {
+    value = JSON.parse(actualText);
+  } catch (_) {
+    return { ok: false, displayActual: actualText };
+  }
+
+  const n = Number(test.n);
+  if (!Array.isArray(value)) {
+    return { ok: false, displayActual: 'La función no regresó una lista.' };
+  }
+
+  const seen = new Set();
+  for (const board of value) {
+    if (!Array.isArray(board) || board.length !== n || board.some((row) => typeof row !== 'string' || row.length !== n)) {
+      return { ok: false, displayActual: `${value.length} resultados; al menos un tablero tiene formato inválido.` };
+    }
+
+    const key = JSON.stringify(board);
+    if (seen.has(key)) {
+      return { ok: false, displayActual: `${value.length} resultados; hay configuraciones duplicadas.` };
+    }
+    seen.add(key);
+
+    const columns = new Set();
+    const diag1 = new Set();
+    const diag2 = new Set();
+    let queens = 0;
+
+    for (let r = 0; r < n; r += 1) {
+      let rowQueens = 0;
+      for (let c = 0; c < n; c += 1) {
+        const ch = board[r][c];
+        if (ch !== 'Q' && ch !== '.') {
+          return { ok: false, displayActual: `${value.length} resultados; se encontró un símbolo distinto de Q o .` };
+        }
+        if (ch !== 'Q') continue;
+
+        queens += 1;
+        rowQueens += 1;
+        const d1 = r - c;
+        const d2 = r + c;
+        if (columns.has(c) || diag1.has(d1) || diag2.has(d2)) {
+          return { ok: false, displayActual: `${value.length} resultados; al menos dos reinas se atacan.` };
+        }
+        columns.add(c);
+        diag1.add(d1);
+        diag2.add(d2);
+      }
+      if (rowQueens !== 1) {
+        return { ok: false, displayActual: `${value.length} resultados; cada fila debe contener exactamente una reina.` };
+      }
+    }
+
+    if (queens !== n) {
+      return { ok: false, displayActual: `${value.length} resultados; un tablero no contiene exactamente ${n} reinas.` };
+    }
+  }
+
+  const ok = value.length === Number(test.expectedCount);
+  return { ok, displayActual: `${value.length} configuraciones válidas` };
+}
+
 function compareResult(actualText, test) {
   const mode = test.compare || 'exact';
 
@@ -275,6 +339,7 @@ function compareResult(actualText, test) {
   if (mode === 'coin_collection') return validateCoinCollection(actualText, test);
   if (mode === 'beautiful') return validateBeautifulArray(actualText, test);
   if (mode === 'nknights') return validateNKnights(actualText, test);
+  if (mode === 'nqueens') return validateNQueens(actualText, test);
 
   return {
     ok: actualText.trimEnd() === String(test.expected).trimEnd(),

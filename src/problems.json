@@ -1090,5 +1090,69 @@
         "hidden": true
       }
     ]
+  },
+  {
+    "id": "n-queens",
+    "title": "N-Queens",
+    "difficulty": "Hard",
+    "category": "Backtracking + poda",
+    "statement": "Dado un entero positivo n, coloca n reinas en un tablero n x n de forma que ninguna reina ataque a otra. Regresa todas las configuraciones válidas como listas de cadenas, usando Q para una casilla ocupada y . para una casilla vacía. El orden de las configuraciones no importa. Indica la complejidad temporal y espacial de tu solución.",
+    "constraints": [
+      "1 <= n <= 9",
+      "Cada tablero debe contener exactamente n reinas",
+      "Dos reinas no pueden compartir fila, columna ni diagonal",
+      "No se permiten configuraciones duplicadas"
+    ],
+    "template": "class Solution:\n    def solveNQueens(self, n: int) -> list[list[str]]:\n        # Tu código aquí\n        pass",
+    "examples": [
+      {
+        "input": "n = 4",
+        "output": "[[\".Q..\",\"...Q\",\"Q...\",\"..Q.\"],[\"..Q.\",\"Q...\",\"...Q\",\".Q..\"]]"
+      },
+      {
+        "input": "n = 1",
+        "output": "[[\"Q\"]]"
+      }
+    ],
+    "tests": [
+      {
+        "input": "n = 4",
+        "expected": "2",
+        "publicExpected": "2 configuraciones válidas",
+        "expectedCount": 2,
+        "n": 4,
+        "call": "solution.solveNQueens(4)",
+        "compare": "nqueens",
+        "hidden": false
+      },
+      {
+        "input": "n = 1",
+        "expected": "1",
+        "publicExpected": "1 configuración válida",
+        "expectedCount": 1,
+        "n": 1,
+        "call": "solution.solveNQueens(1)",
+        "compare": "nqueens",
+        "hidden": false
+      },
+      {
+        "input": "n = 5",
+        "expected": "10",
+        "expectedCount": 10,
+        "n": 5,
+        "call": "solution.solveNQueens(5)",
+        "compare": "nqueens",
+        "hidden": true
+      },
+      {
+        "input": "n = 6",
+        "expected": "4",
+        "expectedCount": 4,
+        "n": 6,
+        "call": "solution.solveNQueens(6)",
+        "compare": "nqueens",
+        "hidden": true
+      }
+    ]
   }
 ]
